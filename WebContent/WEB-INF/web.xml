@@ -16,4 +16,10 @@
     <servlet-name>sellservlet</servlet-name>
     <servlet-class>servlet.sellservlet</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>factorservlet</display-name>
+    <servlet-name>factorservlet</servlet-name>
+    <servlet-class>servlet.factorservlet</servlet-class>
+  </servlet>
 </web-app>

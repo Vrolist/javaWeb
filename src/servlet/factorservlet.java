@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tableClass.factor;
 import tableClass.sell;
 
 /**
- * Servlet implementation class sellservlet
+ * Servlet implementation class factorservlet
  */
-@WebServlet("/sellservlet")
-public class sellservlet extends HttpServlet {
+@WebServlet("/factorservlet")
+public class factorservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public sellservlet() {
+	public factorservlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,21 +36,22 @@ public class sellservlet extends HttpServlet {
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
 		HttpSession session = request.getSession();
+		String fac = request.getParameter("idfactor");
 		String goods = request.getParameter("idgoods");
-		String quan = request.getParameter("quantity");
-		String cashier = request.getParameter("idcashier");
-		if (goods != null && quan != null && cashier != null) {
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		String principal = request.getParameter("principal");
+		if (fac != null && goods != null) {
 
+			int idfactor = Integer.parseInt(fac);
 			int idgoods = Integer.parseInt(goods);
-			int quantity = Integer.parseInt(quan);
-			int idcashier = Integer.parseInt(cashier);
-			if (quantity > 0) {
-				sell.increaseSell(idgoods, idcashier, quantity);
+			if (factor.insertFactor(idfactor, idgoods, name, address, principal)) {
 				session.setAttribute("message", "添加成功");
 			} else {
-				session.setAttribute("message", "销售数值必须大于0");
+				session.setAttribute("message", "添加失败");
 			}
-		}else{
+
+		} else {
 			session.setAttribute("message", "输入只能为编号");
 		}
 

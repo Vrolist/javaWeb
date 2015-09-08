@@ -12,7 +12,7 @@
 <body>
 	<%
 		if (session.getAttribute("user") != null && session.getAttribute("job").equals("cashier")) {
-
+			String message = (String) session.getAttribute("message");
 			cashier cas = (cashier) session.getAttribute("user");
 			//manager man = manager.queryWithOutPwd(managerid);
 			List<sell> sells = sell.cashierSell(cas.getId());
@@ -22,25 +22,32 @@
 		工号:"<%=cas.getId()%>"收银员登录，点<a href="logout.jsp">此</a>注销
 	</h2>
 	<h5></h5>
-	<form action="takenotes.jsp" method="get">
-		<input type="hidden" name="<%=cas.getId()%>"> <input
-			type="submit" value="销售记录">
-	</form>
+	<%
+		if (message != null) {
+	%>
+	<%=message%>
+	<%
+	session.setAttribute("message", null);
+			}
+	%>
 	<form action="sellservlet" method="get">
 		<table border="1" width="80%">
 			<tr>
 				<td>商品编号</td>
 				<td>销售数量</td>
+				<td>销售人员</td>
 				<td>操作</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="idgoods"></td>
 				<td><input type="text" name="quantity" value="0"></td>
+				<td><input type="text" name="idcashier" value=<%=cas.getId()%>></td>
 				<td><input type="submit" value="提交"></td>
 			</tr>
 		</table>
 	</form>
-	<hr><hr>
+	<hr>
+	<hr>
 	<h3>销售历史记录</h3>
 	<table border="1" width="80%">
 		<tr>
@@ -48,7 +55,6 @@
 			<td>产品编号</td>
 			<td>收银人员编号</td>
 			<td>销售数量</td>
-			<td colspan="6">操 作</td>
 		</tr>
 
 		<%

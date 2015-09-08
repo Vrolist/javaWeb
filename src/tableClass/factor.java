@@ -69,6 +69,7 @@ public class factor {
 		}
 		return false;
 	}
+
 	public static List<factor> allfactor(){
 		String sql = "select * from " + factor.db;
 		try {

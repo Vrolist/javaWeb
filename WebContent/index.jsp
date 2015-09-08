@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("user") == null) {
 	%>
 	<form action="loginservlet" method="get">
 		<input type="radio" name="select" value="cashier" checked>收银员
@@ -44,7 +44,7 @@
 		<%
 		}
 	%>
-		，账户名：<%=(String) session.getAttribute("id")%>
+		
 		<br> 点击<a href="logout.jsp">注销</a>重新登录<br> 点击<a
 			href="select.jsp">跳转</a>至用户页面<br>
 	</h2>
