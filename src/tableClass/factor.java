@@ -53,11 +53,22 @@ public class factor {
 	public void setPrincipal(String principal) {
 		this.principal = principal;
 	}
-	public static boolean deleteFactor(int idfactor){
-		return false;
-	}
+
 	public static boolean insertFactor(int idfactor, int idgoods, String name, String address, String principal){
 		String sql = "INSERT INTO factor(idfactor, idgoods, name, address, principal) value (" + idfactor +","+ idgoods +",'"+ name +"','"+ address +"','"+ principal +"')";
+		//System.out.println(sql);
+		try {
+			if (operaDB.execu(sql) == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public static boolean deleteFactor(int idgoods){
+		String sql = "delete from "+factor.db+" where idgoods =  "+ idgoods;
 		//System.out.println(sql);
 		try {
 			if (operaDB.execu(sql) == 1) {
@@ -93,7 +104,7 @@ public class factor {
 	}
 	public static void main(String[] args){
 		//factor.insertFactor(111, 23, "guess", "England", "you know");
-		
+		factor.deleteFactor(99);
 		
 		List<factor> factors = factor.allfactor();
 		Iterator<factor> factor = factors.iterator();

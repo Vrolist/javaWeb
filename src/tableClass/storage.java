@@ -47,7 +47,7 @@ public class storage {
 				sf = new storage();
 				sf.setIdgoods(rs.getInt(1));
 				sf.setQuantity(rs.getInt(2));
-				sf.setSell(3);
+				sf.setSell(rs.getInt(3));
 				storages.add(sf);
 			}
 			return storages;
@@ -70,6 +70,18 @@ public class storage {
 		return false;
 	}
 
+	public static boolean haveGoods(int idgoods){
+		String sql = "select idgoods from storage where idgoods = " + idgoods;
+		try {
+			if (operaDB.login(sql)) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static boolean deleteCargo(int idgoods){
 		String sql = "delete from storage where idgoods = " + idgoods;
 		try {
@@ -111,7 +123,7 @@ public class storage {
 	}
 
 	public static void main(String[] args) {
-		storage.reduceQuantity(102, 100);
+		System.out.println(storage.haveGoods(102));
 		List<storage> storages = storage.allstorage();
 		Iterator<storage> storage = storages.iterator();
 		while (storage.hasNext()) {

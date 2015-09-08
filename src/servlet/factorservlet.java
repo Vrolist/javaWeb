@@ -35,6 +35,31 @@ public class factorservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
+		String status = request.getParameter("method");
+		if("delete".equals(status))
+		 { this.delete(request,response);
+		 }
+	}
+	public void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String goods = request.getParameter("idgoods");
+		int idgoods = Integer.parseInt(goods);
+		if(factor.deleteFactor(idgoods)){
+			//session.setAttribute("message", "添加成功");
+		}
+		else{
+			//session.setAttribute("message", "添加失败");
+		}
+		response.sendRedirect("buyer.jsp");
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//doGet(request, response);
 		HttpSession session = request.getSession();
 		String fac = request.getParameter("idfactor");
 		String goods = request.getParameter("idgoods");
@@ -55,17 +80,7 @@ public class factorservlet extends HttpServlet {
 			session.setAttribute("message", "输入只能为编号");
 		}
 
-		response.sendRedirect("cashier.jsp");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.sendRedirect("buyer.jsp");
 	}
 
 }

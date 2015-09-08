@@ -23,7 +23,7 @@
 		工号:"<%=man.getId()%>"经理登录，点<a href="logout.jsp">此</a>注销
 	</h2>
 	<h5></h5>
-	<form action="sellservlet" method="get">
+	<form action="sellservlet" method="post">
 		请输入收银人员编号或产品编号关键字:<input type="text" name="kword"> <input
 			type="submit" value="查询">
 
@@ -42,7 +42,7 @@
 			<td>产品编号</td>
 			<td>收银人员</td>
 			<td>销售数量</td>
-			<td colspan="6">操 作</td>
+			<!-- <td colspan="6">操 作</td> -->
 		</tr>
 
 		<%
@@ -54,7 +54,6 @@
 			<td><%=se.getIdgoods()%></td>
 			<td><%=se.getIdcashier()%></td>
 			<td><%=se.getQuantity()%></td>
-
 
 		</tr>
 		<%

@@ -12,11 +12,16 @@
 	%>
 	<form action="loginservlet" method="get">
 		<input type="radio" name="select" value="cashier" checked>收银员
-		<input type="radio" name="select" value="buyer">商品采购员 <input
-			type="radio" name="select" value="storagemanager">库存管理员 <input
-			type="radio" name="select" value="manager">超市经理<br> 账号：<input
-			type="text" name="name"><br> 密码：<input type="password"
-			name="pwd"><br> <input type="submit" value="登陆"><input
+		<input type="radio" name="select" value="buyer">商品采购员
+		<input
+			type="radio" name="select" value="storagemanager">库存管理员 
+			<input
+			type="radio" name="select" value="manager">超市经理<br> 账号：
+			<input
+			type="text" name="name" value="hus">
+			<br> 密码：<input type="password"
+			name="pwd" value="hus"><br> <input type="submit" value="登陆">
+			<input
 			type="reset" value="重置">
 	</form>
 	<%

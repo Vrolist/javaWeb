@@ -24,7 +24,6 @@ public class operaDB {
 	}
 	
 	public static boolean login(String sql) throws Exception {
-		System.out.println(sql);
 		DatabaseConnection dbc = new DatabaseConnection();
 		Connection conn = dbc.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);

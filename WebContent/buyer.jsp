@@ -17,6 +17,7 @@
 			//manager man = manager.queryWithOutPwd(managerid);
 			List<factor> factors = factor.allfactor();
 			Iterator<factor> fac = factors.iterator();
+
 	%>
 	<h2>
 		工号:"<%=buy.getId()%>"采购员登录，点<a href="logout.jsp">此</a>注销
@@ -52,7 +53,7 @@
 			<td><%=fa.getName()%></td>
 			<td><%=fa.getAddress()%></td>
 			<td><%=fa.getPrincipal()%></td>
-			<td></td>
+			<td><a href="factorservlet?idgoods=<%=fa.getIdgoods()%>&method=delete">删除</a></td>
 		</tr>
 		<%
 			}
@@ -60,7 +61,7 @@
 	</table>
 	<hr>
 	<h4>增加厂家和商品信息</h4>
-	<form action="factorservlet" method="get">
+	<form action="factorservlet" method="post">
 		<table border="1" width="80%">
 			<tr>
 				<td>厂商编号</td>
@@ -68,6 +69,7 @@
 				<td>名字</td>
 				<td>地址</td>
 				<td>负责人</td>
+				<td>操作</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="idfactor"></td>

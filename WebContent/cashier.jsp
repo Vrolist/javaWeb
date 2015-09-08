@@ -17,6 +17,9 @@
 			//manager man = manager.queryWithOutPwd(managerid);
 			List<sell> sells = sell.cashierSell(cas.getId());
 			Iterator<sell> sell = sells.iterator();
+			
+			List<storage> storages = storage.allstorage();
+			Iterator<storage> storage = storages.iterator();
 	%>
 	<h2>
 		工号:"<%=cas.getId()%>"收银员登录，点<a href="logout.jsp">此</a>注销
@@ -30,7 +33,7 @@
 	session.setAttribute("message", null);
 			}
 	%>
-	<form action="sellservlet" method="get">
+	<form action="sellservlet" method="post">
 		<table border="1" width="80%">
 			<tr>
 				<td>商品编号</td>
@@ -48,6 +51,30 @@
 	</form>
 	<hr>
 	<hr>
+	<h4>库存信息</h4>
+	<table border="1" width="80%">
+		<tr>
+			<td>商品编号</td>
+			<td>库存数量</td>
+			<td>商品售价</td>
+			<!-- <td colspan="6">操 作</td> -->
+		</tr>
+
+		<%
+			while (storage.hasNext()) {
+				storage se = storage.next();
+		%>
+		<tr>
+			<td><%=se.getIdgoods()%></td>
+			<td><%=se.getQuantity()%></td>
+			<td><%=se.getSell()%></td>
+
+		</tr>
+		<%
+			}
+		%>
+	</table>
+	<hr><hr>
 	<h3>销售历史记录</h3>
 	<table border="1" width="80%">
 		<tr>

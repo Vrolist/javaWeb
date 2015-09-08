@@ -22,4 +22,10 @@
     <servlet-name>factorservlet</servlet-name>
     <servlet-class>servlet.factorservlet</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>storagemanagerservlet</display-name>
+    <servlet-name>storagemanagerservlet</servlet-name>
+    <servlet-class>servlet.storagemanagerservlet</servlet-class>
+  </servlet>
 </web-app>

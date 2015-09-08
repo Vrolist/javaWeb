@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import tableClass.sell;
+import tableClass.storage;
 
 /**
- * Servlet implementation class sellservlet
+ * Servlet implementation class storagemanagerservlet
  */
-@WebServlet("/sellservlet")
-public class sellservlet extends HttpServlet {
+@WebServlet("/storagemanagerservlet")
+public class storagemanagerservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public sellservlet() {
+	public storagemanagerservlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +34,23 @@ public class sellservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
-		
+		HttpSession session = request.getSession();
+		String goods = request.getParameter("idgoods");
+		String quan = request.getParameter("quantity");
+		String sel = request.getParameter("sell");
+		if (goods != null) {
+			int idgoods = Integer.parseInt(goods);
+			int quantity = Integer.parseInt(quan);
+			float sell = Float.parseFloat(sel);
+			if (storage.haveGoods(idgoods)) {
+				storage.increaseQuantity(idgoods, quantity);
+				session.setAttribute("message", "成功入库");
+			} else {
+				storage.insertNewCargo(idgoods, quantity, sell);
+				session.setAttribute("message", "成功入库，新增一条记录");
+			}
+		}
+		response.sendRedirect("storagemanager.jsp");
 	}
 
 	/**
@@ -44,28 +60,7 @@ public class sellservlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		String goods = request.getParameter("idgoods");
-		String quan = request.getParameter("quantity");
-		String cashier = request.getParameter("idcashier");
-		if (goods != null && quan != null && cashier != null) {
-
-			int idgoods = Integer.parseInt(goods);
-			int quantity = Integer.parseInt(quan);
-			int idcashier = Integer.parseInt(cashier);
-			if (quantity > 0) {
-				sell.increaseSell(idgoods, idcashier, quantity);
-				session.setAttribute("message", "添加成功");
-			} else {
-				session.setAttribute("message", "销售数值必须大于0");
-			}
-		}else{
-			session.setAttribute("message", "输入只能为编号");
-		}
-
-		response.sendRedirect("cashier.jsp");
-		
-		//doGet(request, response);
+		doGet(request, response);
 	}
 
 }
