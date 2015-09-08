@@ -7,25 +7,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manager Page</title>
+<title>Take Notes</title>
 </head>
 <body>
 	<%
-		if (session.getAttribute("user") != null && session.getAttribute("job").equals("manager")) {
-
-			manager man = (manager)session.getAttribute("user");
-			
+		if (session.getAttribute("id") != null ) {
+			if(session.getAttribute("job").equals("cashier")){
+			String idcashier = (String) session.getAttribute("id");
+			int id = cashier.id(cashier.getDb(), idcashier);
 			//manager man = manager.queryWithOutPwd(managerid);
-			List<sell> sells = sell.allSell();
+			List<sell> sells = sell.cashierSell(id);
 			Iterator<sell> sell = sells.iterator();
 	%>
 	<h2>
-		工号:"<%=man.getId()%>"经理登录，点<a href="logout.jsp">此</a>注销
+		工号:"<%=id%>"登录，点<a href="logout.jsp">此</a>注销
 	</h2>
 	<h5></h5>
 	<form action="queryservlet" method="get">
-		请输入收银人员编号或产品编号关键字:<input type="text" name="kword">
-		<input type="submit" value="查询">
+		请输入收银人员编号或产品编号关键字:<input type="text" name="kword"> <input
+			type="submit" value="查询">
 	</form>
 	<table border="1" width="80%">
 		<tr>
@@ -59,7 +59,7 @@
 		尚未登录或者非经理账号，请<a href="index.jsp">返回首页</a>以经理身份登录
 	</h2>
 	<%
-		}
+		}}
 	%>
 </body>
 </html>

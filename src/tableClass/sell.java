@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import basicClass.manager;
 import operaDB.operaDB;
 
 public class sell {
@@ -64,6 +65,45 @@ public class sell {
 		return false;
 	}
 
+
+	public static List<sell> cashierSell(int idcashier) {
+		String sql = "select * from " + sell.db +" where idcashier = '"+idcashier+"'";
+		try {
+			ResultSet rs = operaDB.query(sql);
+			List<sell> sells = new ArrayList<sell>();
+			sell sf = null;
+			while (rs.next()) {
+				sf = new sell();
+				sf.setNumber(rs.getInt(1));
+				sf.setIdgoods(rs.getInt(2));
+				sf.setIdcashier(rs.getInt(3));
+				sf.setQuantity(rs.getInt(4));
+				sells.add(sf);
+			}
+			return sells;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public static List<sell> idgoodsSell(int idgoods) {
+		String sql = "select * from " + sell.db +" where idgoods = '"+idgoods+"'";
+		try {
+			ResultSet rs = operaDB.query(sql);
+			List<sell> sells = new ArrayList<sell>();
+			sell sf = null;
+			while (rs.next()) {
+				sf = new sell();
+				sf.setNumber(rs.getInt(1));
+				sf.setIdgoods(rs.getInt(2));
+				sf.setIdcashier(rs.getInt(3));
+				sf.setQuantity(rs.getInt(4));
+				sells.add(sf);
+			}
+			return sells;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	public static List<sell> allSell() {
 		String sql = "select * from " + sell.db;
 		try {
@@ -87,7 +127,7 @@ public class sell {
 	
 	public static void main(String[] args) {
 		//sell.increaseSell(102, 1401, 1);
-		List<sell> sells = sell.allSell();
+		List<sell> sells = sell.idgoodsSell(103);
 		Iterator<sell> sell = sells.iterator();
 		while (sell.hasNext()) {
 			sell se = sell.next();

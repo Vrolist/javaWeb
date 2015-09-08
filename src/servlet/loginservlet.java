@@ -46,7 +46,8 @@ public class loginservlet extends HttpServlet {
 		else if (func.equals("cashier")) {
 			try {
 				if(cashier.login(cashier.getDb(), name, pwd)){
-					session.setAttribute("id",name);
+
+					session.setAttribute("user", cashier.newcashier(name, pwd));
 					session.setAttribute("job", "cashier".toString());
 					response.sendRedirect("cashier.jsp");
 				}
@@ -61,7 +62,7 @@ public class loginservlet extends HttpServlet {
 		else if(func.equals("manager")){
 			try {
 				if(manager.login(manager.getDb(), name, pwd)){
-					session.setAttribute("id", name);
+					session.setAttribute("user", manager.newmanager(name, pwd));
 					session.setAttribute("job", "manager".toString());
 					response.sendRedirect("manager.jsp");
 				}
@@ -77,7 +78,7 @@ public class loginservlet extends HttpServlet {
 		else if (func.equals("buyer")) {
 			try {
 				if(buyer.login(buyer.getDb(),name, pwd)){
-					session.setAttribute("id", name);
+					session.setAttribute("user", buyer.newbuyer(name, pwd));
 					session.setAttribute("job", "buyer".toString());
 					response.sendRedirect("buyer.jsp");
 				}
@@ -92,7 +93,7 @@ public class loginservlet extends HttpServlet {
 		else if (func.equals("storagemanager")) {
 			try {
 				if(buyer.login(storagemanager.getDb(), name, pwd)){
-					session.setAttribute("id", name);
+					session.setAttribute("user", storagemanager.newstoragemanager(name, pwd));
 					session.setAttribute("job", "storagemanager".toString());
 					response.sendRedirect("storagemanager.jsp");
 				}
