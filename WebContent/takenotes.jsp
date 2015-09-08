@@ -13,14 +13,13 @@
 	<%
 		if (session.getAttribute("id") != null ) {
 			if(session.getAttribute("job").equals("cashier")){
-			String idcashier = (String) session.getAttribute("id");
-			int id = cashier.id(cashier.getDb(), idcashier);
-			//manager man = manager.queryWithOutPwd(managerid);
-			List<sell> sells = sell.cashierSell(id);
+			cashier cas = (cashier)session.getAttribute("user");
+					//manager man = manager.queryWithOutPwd(managerid);
+			List<sell> sells = sell.cashierSell(cas.getId());
 			Iterator<sell> sell = sells.iterator();
 	%>
 	<h2>
-		工号:"<%=id%>"登录，点<a href="logout.jsp">此</a>注销
+		工号:"<%=cas.getId()%>"登录，点<a href="logout.jsp">此</a>注销
 	</h2>
 	<h5></h5>
 	<form action="queryservlet" method="get">
