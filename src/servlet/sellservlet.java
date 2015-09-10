@@ -34,7 +34,9 @@ public class sellservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
-		
+		HttpSession session = request.getSession();
+		String goods = request.getParameter("idgoods");
+		session.setAttribute("idgoods", goods);
 	}
 
 	/**
@@ -55,7 +57,6 @@ public class sellservlet extends HttpServlet {
 			int idcashier = Integer.parseInt(cashier);
 			if (quantity > 0) {
 				sell.increaseSell(idgoods, idcashier, quantity);
-				session.setAttribute("message", "添加成功");
 			} else {
 				session.setAttribute("message", "销售数值必须大于0");
 			}

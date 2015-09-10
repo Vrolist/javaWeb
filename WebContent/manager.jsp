@@ -16,18 +16,22 @@
 			manager man = (manager) session.getAttribute("user");
 			String message = (String) session.getAttribute("message");
 			//manager man = manager.queryWithOutPwd(managerid);
-			List<sell> sells = sell.allSell();
-			Iterator<sell> sell = sells.iterator();
+			
+				List<sell> sells = sell.allSell();
+				Iterator<sell> sell = sells.iterator();
+			
 	%>
 	<h2>
 		工号:"<%=man.getId()%>"经理登录，点<a href="logout.jsp">此</a>注销
 	</h2>
 	<h5></h5>
+	<!--
 	<form action="sellservlet" method="post">
-		请输入收银人员编号或产品编号关键字:<input type="text" name="kword"> <input
+		请输入产品编号关键字:<input type="text" name="kword"> <input
 			type="submit" value="查询">
 
 	</form>
+	  -->
 	<%
 		if (message != null) {
 	%>
